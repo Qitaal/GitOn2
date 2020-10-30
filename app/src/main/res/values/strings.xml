@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">GitOn2</string>
+    <string name="user_name">Thalib Abu Qitaal</string>
+    <string name="user_company">UPN Veteran Yogyakarta</string>
+    <string name="user_location">Jakarta</string>
+    <string name="user_follow">123</string>
+    <string name="user_Followers">Followers</string>
+    <string name="user_following">Following</string>
+    <string name="follow_small_logo">Logo follow</string>
+    <string name="location_small_logo">Logo location</string>
+    <string name="company_small_logo">Logo company</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search User</string>
+    <string name="user_repo">324</string>
+    <string name="user_repository">Repositories</string>
+    <string name="email_user">thalib74@gmail.com</string>
+    <string name="background_detail">Background Detail</string>
+    <string name="location_icon_logo">Location icon logo</string>
+    <string name="company_icon_logo">Company icon logo</string>
+    <string name="language">Language</string>
+</resources>
