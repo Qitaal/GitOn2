@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.example.giton2.R;
 import com.example.giton2.model.search.ItemsItem;
 import com.example.giton2.view.detailuser.DetailUserActivity;
+import com.example.giton2.view.detailuser.DetailUserActivity$FollowingFollowersFragmentDirections;
 import com.example.giton2.view.main.MainActivity$SearchFragmentDirections;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +75,9 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyView
                     actionSearchFragmentToDetailUserActivity.setName(listUser.get(position).getLogin());
                     Navigation.findNavController(v).navigate(actionSearchFragmentToDetailUserActivity);
                 } else {
+//                    DetailUserActivity$FollowingFollowersFragmentDirections.ActionFollowingFollowersFragmentToDetailUserActivity actionFollowingFollowersFragmentToDetailUserActivity = DetailUserActivity$FollowingFollowersFragmentDirections.actionFollowingFollowersFragmentToDetailUserActivity();
+//                    actionFollowingFollowersFragmentToDetailUserActivity.setName(listUser.get(position).getLogin());
+//                    Navigation.findNavController(v).navigate(actionFollowingFollowersFragmentToDetailUserActivity);
                     context.startActivity(new Intent(context, DetailUserActivity.class).putExtra("USER", listUser.get(getAdapterPosition()).getLogin()));
                 }
             });

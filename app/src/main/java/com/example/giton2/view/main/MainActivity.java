@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity{
     public static class SearchFragment extends Fragment{
         RecyclerView rvUserMain;
         UserListAdapter userListAdapter;
-//        List<ItemsItem> userList;
 
         public SearchFragment() {
         }
