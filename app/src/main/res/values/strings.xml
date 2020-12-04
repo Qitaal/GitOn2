@@ -17,5 +17,16 @@
     <string name="background_detail">Background Detail</string>
     <string name="location_icon_logo">Location icon logo</string>
     <string name="company_icon_logo">Company icon logo</string>
-    <string name="language">Language</string>
+    <string name="language_key">Language</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="favorite">Favorite</string>
+    <string name="home_text">
+        Welcome to GitOn2 App\nby\nThlaib Abu Qitaal
+    </string>
+
+    <string name="setting">Setting</string>
+    <string name="remind_me_key" translatable="false">RemindMe</string>
+    <string name="remind_me_summary">You will get notification at 9.00 am</string>
+    <string name="remind_me_title">Remind Me</string>
+    <string name="language_title">Languge</string>
 </resources>

@@ -18,5 +18,14 @@
     <string name="background_detail">Latar belakang detail</string>
     <string name="location_icon_logo">Ikon logo lokasi</string>
     <string name="company_icon_logo">Ikon logo perusahaan</string>
-    <string name="language">Bahasa</string>
+    <string name="language_key">Bahasa</string>
+    <string name="favorite">Favorit</string>
+    <string name="home_text">
+        Selamat datang di Aplikasi GitOn2\noleh \nThlaib Abu Qitaal
+    </string>
+
+    <string name="remind_me_summary">Anda akan mendapata notifikasi pada pukul 9.00 am</string>
+    <string name="remind_me_title">Ingatkan Aku</string>
+    <string name="language_title">Bahasa</string>
+    <string name="setting">Pengaturan</string>
 </resources>

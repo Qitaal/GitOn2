@@ -1,0 +1,15 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Preference
+        app:key="@string/language_key"
+        app:title="@string/language_title"
+        app:icon="@drawable/ic_baseline_g_translate_24"/>
+    <SwitchPreferenceCompat
+        app:key="@string/remind_me_key"
+        app:title="@string/remind_me_title"
+        app:summary="@string/remind_me_summary"
+        app:icon="@drawable/ic_baseline_access_alarm_24"
+        app:switchTextOn="ON"
+        app:switchTextOff="OFF"/>
+
+</PreferenceScreen>

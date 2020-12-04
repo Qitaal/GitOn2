@@ -2,6 +2,7 @@ package com.example.giton2.view.detailuser;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +21,16 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.Glide;
 import com.example.giton2.R;
 import com.example.giton2.adapter.UserListAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DetailUserActivity extends AppCompatActivity {
+    private static final String TAG = "DetailUserActivity";
     TextView tvName, tvRepository, tvFollowers, tvFollowing, tvLocation, tvCompany, tvBio;
     CircleImageView civUser;
+    FloatingActionButton fabFavoriteUser;
     String USER_NAME;
     static DetailUserViewModel detailUserViewModel;
 
@@ -45,9 +49,9 @@ public class DetailUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_user);
 
         detailUserViewModel = new ViewModelProvider(this).get(DetailUserViewModel.class);
-        if (DetailUserActivityArgs.fromBundle(getIntent().getExtras()).getName() != null){
+        if (DetailUserActivityArgs.fromBundle(getIntent().getExtras()).getName() != null) {
             USER_NAME = DetailUserActivityArgs.fromBundle(getIntent().getExtras()).getName();
-        } else{
+        } else {
             USER_NAME = getIntent().getStringExtra("USER");
         }
 
@@ -64,6 +68,19 @@ public class DetailUserActivity extends AppCompatActivity {
         tvBio = findViewById(R.id.tv_bio_detail_user);
         vpFollowingFollowers = findViewById(R.id.vp_followers_following);
         tlFollowersFollowing = findViewById(R.id.tabLayout);
+        fabFavoriteUser = findViewById(R.id.fab_favorite_user);
+
+        detailUserViewModel.init(USER_NAME);
+        fabFavoriteUser.setOnClickListener(v -> {
+            if (detailUserViewModel.isFavoriteUser().getValue()){
+                Log.d(TAG, "onCreate: delete " + detailUserViewModel.isFavoriteUser().getValue());
+                detailUserViewModel.setFavoriteUser(false);
+            }
+            else {
+                Log.d(TAG, "onCreate: no delete " + detailUserViewModel.isFavoriteUser().getValue());
+                detailUserViewModel.setFavoriteUser(true);
+            }
+        });
 
         detailUserViewModel.loadDetailUser(USER_NAME);
         detailUserViewModel.getDetailUserResponse().observe(this, detailUserResponse -> {
@@ -79,10 +96,25 @@ public class DetailUserActivity extends AppCompatActivity {
             tvCompany.setText(detailUserResponse.getCompany());
         });
 
+        detailUserViewModel.isFavoriteUser().observe(this, aBoolean -> {
+            if (aBoolean){
+                fabFavoriteUser.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_color_24));
+            }
+            else {
+                fabFavoriteUser.setImageDrawable(getDrawable(R.drawable.ic_baseline_favorite_border_24));
+            }
+        });
+
         vpAdapter = new ViewPagerAdapter(this, this, NAME_PAGES);
         vpFollowingFollowers.setAdapter(vpAdapter);
 
         new TabLayoutMediator(tlFollowersFollowing, vpFollowingFollowers, (tab, position) -> tab.setText(getString(NAME_PAGES[position]))).attach();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 
     public static class FollowingFollowersFragment extends Fragment{
@@ -106,9 +138,9 @@ public class DetailUserActivity extends AppCompatActivity {
             if (getArguments() != null) {
                 CURRENT_PAGE = getArguments().getString("PAGE");
             }
-//
+
             rvFollowingFollowers = view.findViewById(R.id.rv_user);
-            userListAdapter = new UserListAdapter(getContext());
+            userListAdapter = new UserListAdapter(getContext(), getClass().getSimpleName());
 
             rvFollowingFollowers.setLayoutManager(new LinearLayoutManager(getContext()));
             rvFollowingFollowers.setAdapter(userListAdapter);
